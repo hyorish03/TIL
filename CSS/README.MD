@@ -44,3 +44,54 @@
 ```jsx
 <div className="flex item-center mx-1 p-1 w-full text-blue-100" />
 ```
+
+## Styled-Components
+
+스타일링 컴포넌트의 이름은 대문자로 시작해야한다.
+
+### props 적용
+
+```jsx
+return (
+	<Button>Basic Button</Button>
+	<Button primary>Primary Button</Button>
+)
+
+const Button = styled.button`
+	background: ${props => props.primary ? "palevioletred" : "white"};
+	color: ${props => props.primary ? "white" : "palevioletred"};
+`
+```
+
+- 두 번째 Primary 버튼은 props로 primary를 받았기 때문에 background는 palevioletred, color는 white가 될 것이다.
+
+![Alt text](image-6.png)
+
+### 스타일링 상속
+
+```jsx
+return (
+	<Button>Basic Button</Button>
+	<TomatoButton>Tomato Button</TomatoButton>
+)
+
+const Button = styled.button`
+  color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border-radius: 3px;
+  border: 2px solid palevioletred;
+`;
+
+const TomatoButton = styled(Button)`
+  color: tomato;
+  border-color: tomato;
+`;
+
+```
+
+![Alt text](image-7.png)
+
+- styled(Button)을 해주게 되면 Button 값들을 상속받는다.
+- 그러나 color, border-color 등 겹치는 속성 값들은 새로 설정한 값으로 덮어씌워진다.
